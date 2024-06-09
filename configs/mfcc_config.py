@@ -4,6 +4,7 @@ dataset = {
         'name' : 'AudioMNIST',
         'data_path' : './data',
         'feature' : 'mfcc',
+        'mfcc_params' : None,
         } 
 
 training = {

@@ -4,6 +4,7 @@ from torch.utils.data import Dataset
 import torch
 import numpy as np
 import librosa as lb
+from IPython import embed
 
 class AudioMNISTDataset(Dataset):
     def __init__(self, data_path, feature, test=False):
@@ -26,17 +27,20 @@ class AudioMNISTDataset(Dataset):
         
         # Get audio data and labels
         audio, fs = sf.read(audio_paths[idx])
-        label = audio_paths[idx].split('/')[-1].split('_')[0]
+        label = audio_paths[idx].split('/')[-1].split('_')[0].split('\\')[1]
         # Extract features
         if self.feature == 'raw_waveform':
             # insertar código acá
-            # feat = ...
+            feat = torch.tensor(audio, dtype=torch.float)
         elif self.feature == 'audio_spectrum':
             feat = self.dft(audio,fs)
         elif self.feature == 'mfcc':
             feat = self.mfcc(audio, fs)
         
+        #feat =  feat.view(-1)
         feat = feat.type(torch.float)
+        # print("label: ", label, "label_type, ", type(label))
+        # embed()
         label = torch.tensor(int(label), dtype=torch.long)
 
         return feat, label
@@ -52,7 +56,15 @@ class AudioMNISTDataset(Dataset):
             audio_f (Tensor): spectral representation of the audio data.
         """
         # insertar código
-        return
+        audio_f = np.fft.fft(audio)
+        # esto es porque la primera mmitad da negativo
+        audio_f = np.abs(audio_f[:(len(audio_f)//2)+1])
+
+        audio_f = audio_f / np.max(audio_f)
+        # normalizamos dividiento por el valor maximo del audio
+        # Ensure the tensor has the right shape
+        audio_f = torch.tensor(audio_f, dtype=torch.float)
+        return audio_f 
 
     @staticmethod
     def mfcc(audio, fs):
@@ -66,4 +78,5 @@ class AudioMNISTDataset(Dataset):
             mfcc (Tensor): MFCC of the input audio file.
         """
         # insertar código
-        return
+        mfcc = lb.feature.mfcc(y=audio, sr=fs)
+        return torch.tensor(mfcc, dtype=torch.float)
