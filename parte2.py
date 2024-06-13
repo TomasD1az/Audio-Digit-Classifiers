@@ -19,11 +19,22 @@ print(f'Forma de outputs: {outputs.shape}')
 print(f'Forma de predictions: {predictions.shape}')
 
 if outputs.ndim == 1:
-    correct_predictions = np.sum(np.argmax(predictions, axis=1) == outputs)
+    predicted_classes = np.argmax(predictions, axis=1)
+    true_classes = outputs
+    correct_predictions = np.sum(predicted_classes == outputs)
 else:
-    correct_predictions = np.sum(np.argmax(predictions, axis=1) == np.argmax(outputs, axis=1))
+    predicted_classes = np.argmax(predictions, axis=1)
+    true_classes = np.argmax(outputs, axis=1)
+    correct_predictions = np.sum(predicted_classes == true_classes)
 
 total_predictions = len(outputs)
 accuracy = (correct_predictions / total_predictions) * 100
 
 print(f'Accuracy: {accuracy:.2f}%')
+
+conf_matrix = confusion_matrix(true_classes, predicted_classes)
+
+disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix)
+disp.plot(cmap=plt.cm.Blues)
+plt.title('Matriz de Confusión')
+plt.show()
