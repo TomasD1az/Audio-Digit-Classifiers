@@ -5,8 +5,8 @@ import librosa as lb
 import os
 
 train_dir = os.listdir('data/train')
-archivos = {'0': [], '1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []}
 señales = {'0': [], '1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []}
+archivos = {'0': [], '1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []}
 
 #Cargo los directorios
 for path in train_dir:
