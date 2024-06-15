@@ -42,13 +42,14 @@ Para utilizar los clasificadores, sigue estos pasos:
 ```plaintext
 /
 ├── data/                     # Carpeta para almacenar los datos de audio
-├── models/                   # Modelos entrenados
-├── notebooks/                # Notebooks de Jupyter con análisis y experimentos
+├── configs/                  # Configuraciones e hiperparametros de cada modelo
 ├── src/                      # Código fuente de los clasificadores
-│   ├── preprocesamiento.py   # Funciones de preprocesamiento de audio
-│   ├── modelo.py             # Definición y entrenamiento de modelos
-│   └── clasificador.py       # Funciones de carga de modelos y predicciones
-├── tests/                    # Pruebas unitarias y de integración
+│   ├── trainer.py            # Defino clase Trainer para el entrenamiento de modelos
+│   ├── dataload.py            # dataloaders para entrenamiento, validación y prueba a partir de audio
+│   ├── dataset.py            # Cargar y procesar archivos para modelos
+│   ├── model.py              # Definicion dos clases de modelos (NeuralNet y NeuralNet_mfcc)
+│   └── eval.py               # Defino clase Evaluator para evlauar predicciones
+├── tests.py                    # Pruebas unitarias y de integración
 ├── requirements.txt          # Lista de dependencias del proyecto
 └── README.md                 # Este archivo
 ```
