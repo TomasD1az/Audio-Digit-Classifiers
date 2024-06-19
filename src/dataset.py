@@ -37,7 +37,7 @@ class AudioMNISTDataset(Dataset):
         elif self.feature == 'mfcc':
             feat = self.mfcc(audio, fs)
         
-        #feat =  feat.view(-1)
+        feat =  feat.view(-1)
         feat = feat.type(torch.float)
         # print("label: ", label, "label_type, ", type(label))
         # embed()
