@@ -1,6 +1,6 @@
 # Clasificadores de Números en Audio
 
-Este repositorio contiene varios clasificadores de audio capaces de reconocer números del 0 al 9. El sistema toma grabaciones de audio como entrada y devuelve el número detectado en la grabación.
+Este proyecto consiste en un clasificador automático de números del 0 al 9 a partir de grabaciones de audio, implementado mediante redes neuronales. Utiliza técnicas de procesamiento de señales, en particular la Transformada Discreta de Fourier (DFT), para extraer características relevantes del audio antes de ser procesado por los modelos. El objetivo principal es explorar distintos enfoques de aprendizaje profundo para el reconocimiento de voz, centrándose en comandos numéricos simples, lo que lo hace aplicable en interfaces de usuario por voz, asistentes virtuales y sistemas embebidos con capacidades auditivas.
 
 ## Tabla de Contenidos
 
